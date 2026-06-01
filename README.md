@@ -291,7 +291,7 @@ mvnw.cmd spring-boot:run
 # Linux / macOS
 https://github.com/AStoyan0ff/ASBurgers.git
 
-<p>Отворете: <a href="http://localhost:8080">http://localhost:8080</a></p>
+<p>clone repo: <a href="https://github.com/AStoyan0ff/ASBurgers.git</p>
 
 ---
 
