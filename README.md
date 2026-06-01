@@ -148,11 +148,6 @@
   </tbody>
 </table>
 
-<blockquote>
-  <strong>Забележка:</strong> Ако админът вече съществува с грешна роля в DB, коригирайте ръчно:
-  <code>UPDATE users SET role = 'ADMIN' WHERE username = 'admin';</code>
-</blockquote>
-
 ---
 
 ## Структура на проекта
@@ -294,7 +289,7 @@ server.port=8080</code></pre>
 mvnw.cmd spring-boot:run
 
 # Linux / macOS
-./mvnw spring-boot:run</code></pre>
+https://github.com/AStoyan0ff/ASBurgers.git
 
 <p>Отворете: <a href="http://localhost:8080">http://localhost:8080</a></p>
 
@@ -324,7 +319,6 @@ flowchart LR
 <h3>Висок приоритет</h3>
 
 <ul>
-  <li><strong>POST за редакция на бургер</strong> — формата <code>burger-edit.html</code> изпраща POST, но липсва handler в <code>BurgerController</code></li>
   <li><strong>Spring Security (пълноценно)</strong> — замяна или допълване на <code>AuthInterceptor</code> с role-based URL rules, CSRF защита</li>
   <li><strong>Тайни извън репото</strong> — <code>SPRING_DATASOURCE_*</code> env vars, профили <code>dev</code> / <code>prod</code></li>
   <li><strong>Интеграционни тестове</strong> — MockMvc за auth, orders, admin flows</li>
@@ -376,10 +370,5 @@ flowchart LR
 
 ## Лиценз и автор
 
-<p>Проектът е учебен / демонстрационен. Добавете LICENSE файл при публикуване в отворен код.</p>
+<p>Created by AStoyanoff® 2026</p>
 
----
-
-<p align="center">
-  <em>AS Burgers — поръчай си бургер със стил.</em>
-</p>
