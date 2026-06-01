@@ -1,4 +1,8 @@
-<h1>🍔 ASBurgers King🍔</h1>
+
+<h2 align="center">
+  <strong>🍔ASBurgers King🍔</strong><br>
+  <p>Spring Boot · Thymeleaf · MySQL · Session-based auth</p>
+</h2>
 
 <h2 align="center">
   <strong>Уеб приложение за поръчка на бургери</strong><br>
