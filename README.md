@@ -1,9 +1,9 @@
-# AS Burgers
+<h1>🍔 ASBurgers King🍔</h1>
 
-<p align="center">
+<h2 align="center">
   <strong>Уеб приложение за поръчка на бургери</strong><br>
-  Spring Boot · Thymeleaf · MySQL · Session-based auth
-</p>
+  <p>Spring Boot · Thymeleaf · MySQL · Session-based auth</p>
+</h2>
 
 ---
 
