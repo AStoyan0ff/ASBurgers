@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<main class="auth-page">
+    <h1>Oops!</h1>
+    <p th:text="${message}">Something went wrong.</p>
+    <a class="btn-pill btn-pill--silver" th:href="@{/}">Back to home</a>
+</main>
+
+</body>
+</html>

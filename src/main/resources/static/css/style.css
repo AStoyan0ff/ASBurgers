@@ -1,0 +1,1015 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #050805;
+    color: #e8ffe8;
+    min-height: 100vh;
+}
+
+nav.site-nav {
+    background: rgba(12, 10, 8, 0.88);
+    padding: 14px clamp(16px, 4vw, 40px);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+}
+
+h1, h2 {
+    color: #00e676;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+a:not([class*="btn-pill"]) {
+    color: #00e676;
+}
+
+/* Gold / silver pill buttons (site-wide) */
+.btn-pill,
+.home-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-width: 220px;
+    width: auto;
+    height: 38px;
+    padding: 0 28px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    font-family: inherit;
+    line-height: 1;
+}
+
+.btn-pill:hover,
+.home-btn:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.08);
+}
+
+.btn-pill:active,
+.home-btn:active {
+    transform: translateY(0);
+}
+
+.btn-pill--gold,
+.home-btn--gold {
+    background: linear-gradient(
+            105deg,
+            #8b6914 0%,
+            #d4af37 35%,
+            #ffd700 50%,
+            #c9a227 65%,
+            #9a7b0a 100%
+    );
+    color: #1f1400;
+    border-color: rgba(255, 215, 0, 0.55);
+    box-shadow:
+            0 4px 14px rgba(212, 175, 55, 0.45),
+            inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.btn-pill--gold:hover,
+.home-btn--gold:hover {
+    box-shadow:
+            0 6px 20px rgba(255, 215, 0, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-pill--silver,
+.home-btn--silver {
+    background: linear-gradient(
+            105deg,
+            #5c5c5c 0%,
+            #a8a8a8 35%,
+            #e8e8e8 50%,
+            #b0b0b0 65%,
+            #707070 100%
+    );
+    color: #141414;
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow:
+            0 4px 14px rgba(160, 160, 160, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.btn-pill--silver:hover,
+.home-btn--silver:hover {
+    box-shadow:
+            0 6px 20px rgba(200, 200, 200, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.btn-pill--block {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+}
+
+.btn-pill--nav {
+    min-width: 0;
+    width: auto;
+    height: 34px;
+    padding: 0 18px;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+}
+
+/* Metallic forms — gold & silver (buttons stay .btn-pill) */
+:root {
+    --form-gold: #d4af37;
+    --form-gold-bright: #ffd700;
+    --form-gold-dim: #9a7b0a;
+    --form-silver: #a8a8a8;
+    --form-silver-bright: #e8e8e8;
+    --form-silver-dim: #6e6e6e;
+    --form-panel-bg: linear-gradient(
+            165deg,
+            rgba(32, 28, 22, 0.97) 0%,
+            rgba(18, 16, 14, 0.98) 45%,
+            rgba(26, 24, 20, 0.97) 100%
+    );
+    --form-input-bg: linear-gradient(180deg, rgba(42, 40, 36, 0.95), rgba(20, 18, 16, 0.98));
+    --form-text: #f2ebe0;
+    --form-label: #c8c4bc;
+}
+
+.auth-screen .auth-card,
+.order-screen .auth-card,
+.orders-screen .order-payment-card,
+.burgers-screen .burger-form-page .auth-card {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 28px 30px 26px;
+    border-radius: 20px;
+    background: var(--form-panel-bg);
+    border: 1px solid rgba(212, 175, 55, 0.28);
+    box-shadow:
+            0 0 0 1px rgba(168, 168, 168, 0.12),
+            0 16px 48px rgba(0, 0, 0, 0.55),
+            inset 0 1px 0 rgba(255, 255, 255, 0.07),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    overflow: hidden;
+}
+
+.auth-screen .auth-card::before,
+.order-screen .auth-card::before,
+.orders-screen .order-payment-card::before,
+.burgers-screen .burger-form-page .auth-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    right: 12%;
+    height: 3px;
+    background: linear-gradient(
+            90deg,
+            transparent,
+            var(--form-gold-dim),
+            var(--form-gold),
+            var(--form-silver-bright),
+            var(--form-gold-bright),
+            var(--form-silver-bright),
+            var(--form-gold),
+            transparent
+    );
+    border-radius: 0 0 4px 4px;
+    opacity: 0.95;
+}
+
+.auth-screen .auth-card::after,
+.order-screen .auth-card::after,
+.orders-screen .order-payment-card::after,
+.burgers-screen .burger-form-page .auth-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 0 0 60px rgba(212, 175, 55, 0.04);
+}
+
+.auth-screen .auth-card > *,
+.order-screen .auth-card > *,
+.orders-screen .order-payment-card > *,
+.burgers-screen .burger-form-page .auth-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.auth-screen-title,
+.orders-screen .order-payment-card h3 {
+    margin: 0 0 18px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-align: center;
+    text-transform: uppercase;
+    background: linear-gradient(105deg, #c9a227, #ffd700, #e8e8e8, #d4af37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.65));
+}
+
+.orders-screen .order-payment-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+}
+
+.auth-screen .auth-form--glass,
+.order-screen .auth-form--glass,
+.orders-screen .auth-form--glass,
+.burgers-screen .auth-form--glass {
+    margin: 0;
+    max-width: none;
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.auth-screen .auth-form--glass label,
+.order-screen .auth-form--glass label,
+.orders-screen .auth-form--glass label,
+.burgers-screen .auth-form--glass label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--form-label);
+}
+
+.auth-screen .form-group,
+.order-screen .form-group,
+.orders-screen .form-group,
+.burgers-screen .form-group {
+    margin-bottom: 14px;
+}
+
+.auth-screen .auth-form--glass input,
+.order-screen .auth-form--glass input,
+.order-screen .auth-form--glass select,
+.orders-screen .auth-form--glass input,
+.burgers-screen .auth-form--glass input {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(168, 168, 168, 0.35);
+    background: var(--form-input-bg);
+    color: var(--form-text);
+    font-size: 0.95rem;
+    box-shadow:
+            inset 0 2px 6px rgba(0, 0, 0, 0.4),
+            0 1px 0 rgba(255, 255, 255, 0.04);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auth-screen .auth-form--glass input::placeholder,
+.orders-screen .auth-form--glass input::placeholder {
+    color: rgba(200, 196, 188, 0.45);
+}
+
+.auth-screen .auth-form--glass input:focus,
+.order-screen .auth-form--glass input:focus,
+.order-screen .auth-form--glass select:focus,
+.orders-screen .auth-form--glass input:focus,
+.burgers-screen .auth-form--glass input:focus {
+    outline: none;
+    border-color: rgba(212, 175, 55, 0.75);
+    box-shadow:
+            inset 0 2px 6px rgba(0, 0, 0, 0.35),
+            0 0 0 3px rgba(212, 175, 55, 0.18),
+            0 0 12px rgba(212, 175, 55, 0.12);
+}
+
+.order-screen .auth-form--glass select {
+    appearance: none;
+    cursor: pointer;
+    background-image:
+            linear-gradient(180deg, rgba(42, 40, 36, 0.95), rgba(20, 18, 16, 0.98)),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4af37' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat, no-repeat;
+    background-position: 0 0, right 14px center;
+    background-size: auto, 12px;
+    padding-right: 36px;
+}
+
+.order-screen .auth-form--glass select option {
+    color: #1a1408;
+    background: #f2ebe0;
+}
+
+.auth-screen .field-error,
+.order-screen .field-error,
+.orders-screen .field-error,
+.burgers-screen .field-error {
+    margin: 6px 0 0;
+    font-size: 0.82rem;
+    color: #e8b4a0;
+}
+
+.auth-screen .auth-error,
+.orders-screen .auth-error {
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    text-align: center;
+    color: #ffe0d6;
+    background: rgba(40, 22, 18, 0.75);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: inset 0 0 20px rgba(180, 80, 60, 0.08);
+}
+
+.auth-screen .checkbox-row,
+.order-screen .checkbox-row,
+.orders-screen .checkbox-row,
+.burgers-screen .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0 16px;
+    color: var(--form-silver-bright);
+    font-size: 0.88rem;
+}
+
+.auth-screen .checkbox-row input[type="checkbox"],
+.order-screen .checkbox-row input[type="checkbox"],
+.orders-screen .checkbox-row input[type="checkbox"],
+.burgers-screen .checkbox-row input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    accent-color: var(--form-gold);
+}
+
+form:not(.auth-form--glass):not(.payment-inline-form):not(.burger-delete-form):not(.order-cancel-form) {
+    max-width: 420px;
+    margin: 30px auto;
+    background: #0b140b;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.35);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(168, 168, 168, 0.35);
+    background: #141210;
+    color: var(--form-text);
+    box-sizing: border-box;
+}
+
+label {
+    color: var(--form-label);
+    font-weight: 600;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.field-error {
+    color: #ff8a80;
+    margin: -8px 0 10px 0;
+    font-size: 0.9rem;
+}
+
+.site-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+}
+
+.site-nav__brand {
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: linear-gradient(105deg, #d4af37, #ffd700, #c9a227);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
+}
+
+.site-nav__brand:hover {
+    filter: drop-shadow(0 2px 6px rgba(255, 215, 0, 0.45)) brightness(1.1);
+}
+
+.site-nav__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px 10px;
+}
+
+.site-nav__links .btn-pill.is-active {
+    filter: brightness(1.12);
+}
+
+.burger-card {
+    background: rgba(8, 12, 8, 0.55);
+    border: 1px solid rgba(0, 200, 83, 0.6);
+    border-radius: 14px;
+    padding: 20px;
+    margin: 20px;
+    max-width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.burger-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.burger-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Burgers page */
+body.burgers-screen {
+    margin: 0;
+    min-height: 100vh;
+    background: #2a1f16;
+}
+
+.burgers-screen .burgers-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: #2a1f16;
+}
+
+.burgers-screen .burgers-bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.burgers-screen .site-nav,
+.order-screen .site-nav,
+.orders-screen .site-nav {
+    position: relative;
+    z-index: 2;
+}
+
+.burgers-page {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 8px;
+}
+
+.burgers-screen .container {
+    text-align: center;
+}
+
+.burgers-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    width: 100%;
+}
+
+.burgers-screen .burgers-header h1 {
+    margin: 0;
+    width: 100%;
+    color: #ffd700;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
+    letter-spacing: 0.5px;
+}
+
+.burgers-header-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.burger-empty {
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 420px;
+    border: 1px dashed rgba(0, 200, 83, 0.7);
+    border-radius: 12px;
+    background: rgba(8, 12, 8, 0.5);
+    color: #e8ffe8;
+    backdrop-filter: blur(6px);
+}
+
+.burger-card p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.burger-admin-actions {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+}
+
+.burger-admin-actions .burger-delete-form {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    display: flex;
+}
+
+.form-actions-row,
+.order-btn-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.order-btn-row--nav {
+    margin-top: 16px;
+}
+
+.burger-form-page {
+    max-width: 520px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.burgers-screen .burger-form-page h1 {
+    margin: 0 0 20px;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(105deg, #c9a227, #ffd700, #e8e8e8, #d4af37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.7));
+}
+
+.burgers-screen .burger-form.auth-form--glass {
+    text-align: left;
+}
+
+.checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0 16px;
+}
+
+.checkbox-row input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    accent-color: var(--form-gold);
+}
+
+.orders-page {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.orders-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.order-card {
+    background: #0b140b;
+    border: 1px solid #00c853;
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+
+.order-card p {
+    margin: 4px 0;
+}
+
+.order-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.container {
+    padding: 40px;
+    text-align: center;
+}
+
+body.home-page {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #2a1f16;
+}
+
+.home-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2a1f16;
+}
+
+.home-bg img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.home-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.home-panel .home-btn {
+    width: 220px;
+}
+
+.home-content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.home-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    text-align: right;
+    background: transparent;
+    padding: 0;
+    max-width: calc(100vw - 40px);
+}
+
+.home-panel h1,
+.home-panel p {
+    margin: 0 0 10px 0;
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.auth-form {
+    width: min(420px, 90vw);
+}
+
+.auth-link {
+    margin-top: 12px;
+}
+
+/* Login & register pages */
+html.auth-screen-html {
+    height: 100%;
+    overflow: hidden;
+}
+
+body.auth-screen {
+    margin: 0;
+    height: 100vh;
+    max-height: 100dvh;
+    overflow: hidden;
+    background: #2a1f16;
+}
+
+.auth-screen .auth-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: #2a1f16;
+}
+
+.auth-screen .auth-bg img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.auth-page.auth-page--screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    min-height: unset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.auth-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(400px, 92vw);
+}
+
+.auth-screen .auth-form--glass .btn-pill--block {
+    width: 100%;
+    min-width: 0;
+    margin-top: 8px;
+}
+
+.auth-screen .auth-card > .btn-pill--block {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    margin-top: 12px;
+}
+
+.auth-screen .auth-link-text {
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+    color: #d4af37;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.auth-screen .auth-link-text:hover {
+    color: #ffd700;
+}
+
+@media (max-height: 720px) {
+    .auth-screen-title {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+
+    .auth-screen .auth-card,
+    .order-screen .auth-card,
+    .orders-screen .order-payment-card {
+        padding: 20px 22px 18px;
+    }
+
+    .auth-screen .auth-form--glass input,
+    .order-screen .auth-form--glass input,
+    .order-screen .auth-form--glass select,
+    .orders-screen .auth-form--glass input {
+        padding: 10px 12px;
+    }
+}
+
+.order-layout {
+    width: min(440px, 92vw);
+}
+
+.orders-main {
+    align-items: flex-start;
+    padding-top: 24px;
+    padding-bottom: 32px;
+    overflow-y: auto;
+}
+
+.orders-layout {
+    width: min(520px, 94vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.orders-screen .orders-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 0;
+}
+
+.orders-screen .order-card {
+    width: 100%;
+    box-sizing: border-box;
+    background: rgba(8, 12, 8, 0.55);
+    border: 1px solid rgba(0, 200, 83, 0.55);
+    border-radius: 14px;
+    padding: 20px 22px;
+    text-align: left;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.orders-screen .order-card p {
+    color: #e8ffe8;
+    margin: 6px 0;
+}
+
+.orders-screen .burger-empty {
+    width: 100%;
+    text-align: center;
+}
+
+.orders-screen .order-payment-card .payment-inline-form {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: none;
+    text-align: left;
+}
+
+.orders-screen .order-payment-card .order-cancel-form {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.orders-screen .order-btn-row .btn-pill {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    height: 38px;
+}
+
+/* Order history — compact layout */
+.order-history-screen .orders-main--history {
+    padding-top: 12px;
+    padding-bottom: 16px;
+}
+
+.order-history-screen .orders-layout--history {
+    display: flex;
+    flex-direction: column;
+    width: min(480px, 94vw);
+    gap: 10px;
+    max-height: calc(100dvh - 72px);
+    min-height: 0;
+}
+
+.order-history-screen .auth-screen-title {
+    margin: 0 0 4px;
+    font-size: 1.35rem;
+}
+
+.order-history-screen .orders-list--history {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: calc(100dvh - 168px);
+    overflow-y: auto;
+    gap: 8px;
+    padding-right: 4px;
+}
+
+.order-history-screen .order-card--history {
+    padding: 10px 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.order-history-screen .order-card-compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+    row-gap: 4px;
+}
+
+.order-history-screen .order-card-line {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.3;
+    color: #e8ffe8;
+}
+
+.order-history-screen .order-card-line--muted {
+    font-size: 0.78rem;
+    opacity: 0.9;
+}
+
+.order-history-screen .order-card-line--id {
+    grid-column: 1 / -1;
+    font-size: 0.72rem;
+    opacity: 0.75;
+}
+
+.order-history-screen .order-btn-row--sticky {
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.order-history-screen .order-btn-row--nav .btn-pill {
+    font-size: 0.72rem;
+}
+
+@media (max-height: 800px) {
+    .order-history-screen .orders-list--history {
+        max-height: calc(100dvh - 150px);
+    }
+
+    .order-history-screen .order-card--history {
+        padding: 8px 10px;
+    }
+
+    .order-history-screen .order-card-line {
+        font-size: 0.78rem;
+    }
+}
+
+.order-status--paid {
+    color: #00e676;
+}
+
+.order-status--cancelled {
+    color: #ff8a80;
+}
+
+.order-status--delivering,
+.order-status--delivered {
+    color: #b9ffb9;
+}
+
+.orders-screen .payment-back-row {
+    margin: 12px 0 4px;
+    color: var(--form-silver-bright);
+}
+
+html.orders-screen-html {
+    height: auto;
+    overflow: auto;
+}
+
+body.orders-screen {
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

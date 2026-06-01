@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="auth-screen-html">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Order</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="auth-screen order-screen">
+
+<div class="auth-bg">
+    <img th:src="@{/images/burgerPage.png}" alt="ASBurgers®">
+</div>
+
+<div th:replace="~{Fragments/navbar :: navbar}"></div>
+
+<main class="auth-page auth-page--screen">
+    <div class="auth-layout order-layout">
+        <h1 class="auth-screen-title">Create Order</h1>
+
+        <div class="auth-card">
+            <p class="auth-error" th:if="${orderError}" th:text="${orderError}"></p>
+
+            <form class="auth-form auth-form--glass order-form"
+                  th:action="@{/orders/create}"
+                  method="post"
+                  th:object="${createOrderRequest}">
+
+                <div class="form-group">
+                    <label for="burgerId">Burger</label>
+                    <select id="burgerId" required th:field="*{items[0].burgerId}">
+                        <option value="">-- Select a burger --</option>
+                        <option th:each="burger : ${burgers}"
+                                th:value="${burger.id}"
+                                th:text="${burger.name + ' - ' + burger.price + ' €'}">
+                        </option>
+                    </select>
+                    <p class="field-error"
+                       th:if="${#fields.hasErrors('items[0].burgerId')}"
+                       th:errors="*{items[0].burgerId}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="quantity">Quantity</label>
+                    <input id="quantity" type="number" min="1" step="1" th:field="*{items[0].quantity}" required>
+                    <p class="field-error"
+                       th:if="${#fields.hasErrors('items[0].quantity')}"
+                       th:errors="*{items[0].quantity}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryAddress">Delivery Address</label>
+                    <input id="deliveryAddress" type="text" th:field="*{deliveryAddress}" required
+                           autocomplete="street-address">
+                    <p class="field-error"
+                       th:if="${#fields.hasErrors('deliveryAddress')}"
+                       th:errors="*{deliveryAddress}"></p>
+                </div>
+
+                <button type="submit" class="btn-pill btn-pill--gold btn-pill--block">Place Order</button>
+            </form>
+
+            <a class="btn-pill btn-pill--silver btn-pill--block" th:href="@{/burgers}">Back to burgers</a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

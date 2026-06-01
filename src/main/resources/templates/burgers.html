@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Burgers</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="burgers-screen">
+
+<div class="burgers-bg">
+    <img th:src="@{/images/burgerPage.png}" alt="ASBurgers">
+</div>
+
+<div th:replace="~{Fragments/navbar :: navbar}"></div>
+
+<main class="burgers-page container">
+    <div class="burgers-header">
+        <h1>Available Burgers</h1>
+        <div class="burgers-header-actions"
+             th:if="${session.role != null and session.role.name() == 'ADMIN'}">
+            <a class="btn-pill btn-pill--gold" th:href="@{/burgers/create}">Create Burger</a>
+        </div>
+    </div>
+
+    <div class="burger-empty" th:if="${#lists.isEmpty(burgers)}">
+        No burgers available yet.
+    </div>
+
+    <div class="burger-grid" th:if="${!#lists.isEmpty(burgers)}">
+        <div class="burger-card" th:each="burger : ${burgers}">
+            <img th:src="${burger.imageUrl}"
+                 th:alt="${burger.name + ' image'}"
+                 onerror="this.onerror=null;this.src='/images/homePage.png';">
+
+            <h2 th:text="${burger.name}">Burger Name</h2>
+
+            <p th:text="${burger.description}">Description</p>
+
+            <p>
+                <strong>Ingredients:</strong>
+                <span th:text="${burger.ingredients}"></span>
+            </p>
+
+            <p>
+                <strong>Price:</strong>
+                <span th:text="${burger.price}"></span> €
+            </p>
+
+            <a class="btn-pill btn-pill--gold btn-pill--block"
+               th:href="@{/orders/create(burgerId=${burger.id})}">
+                Order
+            </a>
+
+            <div class="burger-admin-actions"
+                 th:if="${session.role != null and session.role.name() == 'ADMIN'}">
+                <a class="btn-pill btn-pill--gold btn-pill--block"
+                   th:href="@{/burgers/{id}/edit(id=${burger.id})}">Edit</a>
+                <form class="burger-delete-form"
+                      th:action="@{/burgers/{id}/delete(id=${burger.id})}"
+                      method="post">
+                    <button type="submit" class="btn-pill btn-pill--silver btn-pill--block">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

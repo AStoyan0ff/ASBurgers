@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="auth-screen-html orders-screen-html">
+<head>
+    <meta charset="UTF-8">
+    <title>My Orders</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="auth-screen orders-screen">
+
+<div class="auth-bg">
+    <img th:src="@{/images/myOrder.png}" alt="AS Burgers">
+</div>
+
+<div th:replace="~{Fragments/navbar :: navbar}"></div>
+
+<main class="auth-page auth-page--screen orders-main">
+    <div class="orders-layout">
+        <h1 class="auth-screen-title">My Orders</h1>
+
+        <div class="burger-empty" th:if="${order == null}">
+            <p>You have no orders waiting for payment.</p>
+            <div class="order-btn-row order-btn-row--nav">
+                <a class="btn-pill btn-pill--gold btn-pill--block" th:href="@{/orders/order-history}">Order history</a>
+                <a class="btn-pill btn-pill--silver btn-pill--block" th:href="@{/burgers}">Back to burgers</a>
+            </div>
+        </div>
+
+        <div class="auth-card order-payment-card" th:if="${order != null}">
+            <h3>Pay with card</h3>
+
+            <p class="auth-error"
+               th:if="${paymentError != null}"
+               th:text="${paymentError}"></p>
+
+            <form class="auth-form auth-form--glass payment-inline-form"
+                  id="payment-form"
+                  th:action="@{/payments/{id}(id=${order.id})}"
+                  method="post">
+
+                <div class="form-group">
+                    <label for="cardHolderName">Card Holder Name</label>
+                    <input id="cardHolderName"
+                           type="text"
+                           name="cardHolderName"
+                           required
+                           autocomplete="cc-name"
+                           th:value="${paymentCardHolderName}">
+                </div>
+
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input id="cardNumber"
+                           type="text"
+                           name="cardNumber"
+                           required
+                           autocomplete="cc-number"
+                           inputmode="numeric"
+                           pattern="[0-9]{16}"
+                           maxlength="16"
+                           placeholder="1234567890123456"
+                           th:value="${paymentCardNumber}">
+                </div>
+
+                <div class="form-group">
+                    <label for="cvc">CVC</label>
+                    <input id="cvc"
+                           type="password"
+                           name="cvc"
+                           required
+                           autocomplete="cc-csc"
+                           inputmode="numeric"
+                           pattern="[0-9]{3,4}"
+                           maxlength="4"
+                           placeholder="123">
+                </div>
+
+                <label class="checkbox-row payment-back-row">
+                    <input type="checkbox"
+                           id="backToBurgers"
+                           th:onchange="|if (this.checked) window.location.href='@{/burgers}'|">
+                    <span>Back to burgers</span>
+                </label>
+            </form>
+
+            <div class="order-btn-row">
+                <button type="submit" class="btn-pill btn-pill--gold btn-pill--block" form="payment-form">Pay</button>
+                <form class="order-cancel-form"
+                      th:action="@{/orders/{id}/cancel(id=${order.id})}"
+                      method="post">
+                    <button type="submit" class="btn-pill btn-pill--silver btn-pill--block">Cancel</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="order-btn-row order-btn-row--nav" th:if="${order != null}">
+            <a class="btn-pill btn-pill--gold btn-pill--block" th:href="@{/orders/order-history}">Order history</a>
+            <a class="btn-pill btn-pill--silver btn-pill--block" th:href="@{/burgers}">Back to burgers</a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="auth-screen-html orders-screen-html">
+<head>
+    <meta charset="UTF-8">
+    <title>Order History</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="auth-screen orders-screen order-history-screen">
+
+<div class="auth-bg">
+    <img th:src="@{/images/myOrder.png}" alt="ASBurgers®">
+</div>
+
+<div th:replace="~{Fragments/navbar :: navbar}"></div>
+
+<main class="auth-page auth-page--screen orders-main orders-main--history">
+    <div class="orders-layout orders-layout--history">
+        <h1 class="auth-screen-title">Order History</h1>
+
+        <div class="burger-empty burger-empty--compact" th:if="${orders.isEmpty()}">
+            <p>No completed orders yet.</p>
+            <div class="order-btn-row order-btn-row--nav">
+                <a class="btn-pill btn-pill--gold btn-pill--block" th:href="@{/orders/my}">My orders</a>
+                <a class="btn-pill btn-pill--silver btn-pill--block" th:href="@{/burgers}">Back to burgers</a>
+            </div>
+        </div>
+
+        <div class="orders-list orders-list--history" th:if="${!orders.isEmpty()}">
+            <div class="order-card order-card--history" th:each="order : ${orders}">
+                <div class="order-card-compact">
+                    <p class="order-card-line">
+                        <strong>Total:</strong>
+                        <span th:text="|${order.totalPrice} €|"></span>
+                    </p>
+                    <p class="order-card-line">
+                        <strong>Status:</strong>
+                        <span class="order-status"
+                              th:text="${order.status}"
+                              th:classappend="${'order-status--' + #strings.toLowerCase(order.status.name())}"></span>
+                    </p>
+                    <p class="order-card-line">
+                        <strong>Address:</strong>
+                        <span th:text="${order.deliveryAddress}"></span>
+                    </p>
+                    <p class="order-card-line order-card-line--muted">
+                        <strong>Date:</strong>
+                        <span th:text="${#temporals.format(order.createdAt, 'dd.MM.yyyy HH:mm')}"></span>
+                    </p>
+                    <p class="order-card-line order-card-line--id" th:title="${order.id}">
+                        <strong>ID:</strong>
+                        <span th:text="${#strings.substring(order.id.toString(), 0, 8) + '…'}"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-btn-row order-btn-row--nav order-btn-row--sticky" th:if="${!orders.isEmpty()}">
+            <a class="btn-pill btn-pill--gold btn-pill--block" th:href="@{/orders/my}">My orders</a>
+            <a class="btn-pill btn-pill--silver btn-pill--block" th:href="@{/burgers}">Back to burgers</a>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

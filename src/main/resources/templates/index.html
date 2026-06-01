@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Burger Take Away</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="home-page">
+<div class="home-bg">
+    <img th:src="@{/images/homePage.png}" alt="AS Burgers">
+</div>
+
+<div class="home-panel">
+    <div class="home-actions">
+        <a class="btn-pill btn-pill--gold home-btn" th:href="@{/auth/register}">Register</a>
+        <a class="btn-pill btn-pill--silver home-btn" th:href="@{/auth/login}">Login</a>
+    </div>
+</div>
+
+</body>
+</html>
