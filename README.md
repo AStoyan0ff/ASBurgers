@@ -301,24 +301,9 @@ https://github.com/AStoyan0ff/ASBurgers.git
 
 ## Архитектура (накратко)
 
-```mermaid
-flowchart LR
-    Browser["Браузър"] --> Controllers["Controllers"]
-    Controllers --> Services["Services"]
-    Services --> Repos["Repositories"]
-    Repos --> MySQL["MySQL"]
-    Controllers --> Thymeleaf["Thymeleaf Views"]
-    Controllers --> Session["HTTP Session"]
-    AuthInterceptor["AuthInterceptor"] --> Controllers
-```
-
 <p>Слоевете следват класическия Spring MVC pattern: Controller → Service → Repository. Авторизацията е custom (interceptor + session), не Spring Security filter chain.</p>
 
 ---
-
-## Бъдещи подобрения
-
-<p>Планирани и препоръчани стъпки за следващи итерации:</p>
 
 <h3>Висок приоритет</h3>
 
