@@ -1,1 +1,103 @@
-<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head>    <meta charset="UTF-8">    <title>Edit Burger</title>    <link rel="stylesheet" th:href="@{/css/style.css}"></head><body class="burgers-screen"><div class="burgers-bg">    <img th:src="@{/images/burgerPage.png}" alt="ASBurgers"></div><div th:replace="~{Fragments/navbar :: navbar}"></div><main class="burgers-page burger-form-page">    <h1>Edit Burger</h1>    <div class="auth-card">        <form class="burger-form auth-form auth-form--glass"              th:action="@{/burgers/{id}/edit(id=${burgerId})}"              method="post"              th:object="${burgerRequest}">            <div class="form-group">                <label for="name">Name</label>                <input id="name" type="text" th:field="*{name}" required>                <p class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>            </div>            <div class="form-group">                <label for="description">Description</label>                <input id="description" type="text" th:field="*{description}" required>                <p class="field-error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>            </div>            <div class="form-group">                <label for="ingredients">Ingredients</label>                <input id="ingredients" type="text" th:field="*{ingredients}" required>                <p class="field-error" th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}"></p>            </div>            <div class="form-group">                <label for="price">Price</label>                <input id="price" type="number" min="0" step="0.01" th:field="*{price}" required>                <p class="field-error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>            </div>            <div class="form-group">                <label for="imageUrl">Image URL</label>                <input id="imageUrl" type="text" th:field="*{imageURL}" required>                <p class="field-error" th:if="${#fields.hasErrors('imageURL')}" th:errors="*{imageURL}"></p>            </div>            <label class="checkbox-row" for="isAvailable">                <input id="isAvailable" type="checkbox" th:field="*{isAvailable}">                <span>Available</span>            </label>            <div class="form-actions-row">                <button type="submit" class="btn-pill btn-pill--gold btn-pill--block">Save</button>                <a class="btn-pill btn-pill--silver btn-pill--block" th:href="@{/burgers}">Cancel</a>            </div>        </form>    </div></main></body></html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Burger</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="burgers-screen">
+
+<div class="burgers-bg">
+    <img th:src="@{/images/burgerPage.png}" alt="ASBurgers">
+</div>
+
+<div th:replace="~{Fragments/navbar :: navbar}"></div>
+
+<main class="burgers-page burger-form-page">
+    <h1>Edit Burger</h1>
+
+    <div class="burger-empty" th:if="${allBurgers == null or #lists.isEmpty(allBurgers)}">
+        <p>No burgers to edit yet.</p>
+        <a class="btn-pill btn-pill--gold" th:href="@{/burgers/create}">Create Burger</a>
+    </div>
+
+    <div class="auth-card" th:if="${allBurgers != null and !#lists.isEmpty(allBurgers)}">
+        <p class="auth-error" th:if="${editError != null}" th:text="${editError}"></p>
+
+        <form class="burger-picker-form auth-form auth-form--glass"
+              method="get"
+              th:action="@{/burgers/edit}">
+            <div class="form-group">
+                <label for="burgerPicker">Select burger</label>
+                <select id="burgerPicker" name="burgerId" onchange="this.form.submit()">
+                    <option th:each="burger : ${allBurgers}"
+                            th:value="${burger.id}"
+                            th:text="|${burger.name} - ${burger.price} EUR|">
+                    </option>
+                </select>
+            </div>
+        </form>
+
+        <script th:if="${burgerId != null}" th:inline="javascript">
+            (function () {
+                var picker = document.getElementById('burgerPicker');
+                if (picker) {
+                    picker.value = /*[[${burgerId}]]*/ '';
+                }
+            })();
+        </script>
+
+        <th:block th:if="${burgerId != null}">
+            <form class="burger-form auth-form auth-form--glass"
+                  th:action="@{/burgers/edit}"
+                  method="post"
+                  th:object="${burgerRequest}">
+
+                <input type="hidden" name="burgerId" th:value="${burgerId}">
+
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" th:field="*{name}" required>
+                    <p class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input id="description" type="text" th:field="*{description}" required>
+                    <p class="field-error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="ingredients">Ingredients</label>
+                    <input id="ingredients" type="text" th:field="*{ingredients}" required>
+                    <p class="field-error" th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input id="price" type="number" min="0" step="0.01" th:field="*{price}" required>
+                    <p class="field-error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+                </div>
+
+                <div class="form-group">
+                    <label for="imageUrl">Image URL</label>
+                    <input id="imageUrl" type="text" th:field="*{imageURL}" required>
+                    <p class="field-error" th:if="${#fields.hasErrors('imageURL')}" th:errors="*{imageURL}"></p>
+                </div>
+
+                <label class="checkbox-row" for="isAvailable">
+                    <input id="isAvailable" type="checkbox" th:field="*{available}">
+                    <span>Available</span>
+                </label>
+
+                <div class="form-actions-row">
+                    <button type="submit" class="btn-pill btn-pill--gold btn-pill--block">Save</button>
+                    <a class="btn-pill btn-pill--silver btn-pill--block" th:href="@{/burgers}">Cancel</a>
+                </div>
+            </form>
+        </th:block>
+    </div>
+</main>
+
+</body>
+</html>

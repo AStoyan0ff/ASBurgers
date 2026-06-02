@@ -2,6 +2,7 @@ package START.Web.DTOs;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +32,7 @@ public class BurgerRequest {
     @NotBlank
     private String imageURL;
 
-    @NotBlank
+    @NotNull
     @DecimalMin("1.00")
     private BigDecimal price;
 

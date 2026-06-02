@@ -61,7 +61,8 @@ public class AuthInterceptor implements HandlerInterceptor {
     private boolean isAdminPage(String uri) {
 
         return uri.startsWith("/burgers/create")
-                || uri.contains("/edit")
+                || uri.equals("/burgers/edit")
+                || uri.endsWith("/edit")
                 || uri.contains("/delete");
     }
 }

@@ -26,6 +26,13 @@ public class BurgerService {
                 .toList();
     }
 
+    public List<BurgerResponse> getAllBurgersForAdmin() {
+        return burgerRepository.findAllByOrderByNameAsc()
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
+
     public Burger getById(UUID id) {
         return burgerRepository.findById(id).orElseThrow(BurgerNotFoundException::new);
     }
@@ -43,7 +50,21 @@ public class BurgerService {
         burgerRepository.save(burger);
     }
 
+    public void updateBurger(UUID id, BurgerRequest request) {
+        Burger burger = getById(id);
+
+        burger.setName(request.getName());
+        burger.setDescription(request.getDescription());
+        burger.setIngredients(request.getIngredients());
+        burger.setPrice(request.getPrice());
+        burger.setImageURL(request.getImageURL());
+        burger.setAvailable(request.isAvailable());
+
+        burgerRepository.save(burger);
+    }
+
     public void delete(UUID id) {
+        getById(id);
         burgerRepository.deleteById(id);
     }
 

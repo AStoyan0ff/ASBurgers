@@ -266,7 +266,8 @@ a:not([class*="btn-pill"]) {
 .order-screen .auth-form--glass input,
 .order-screen .auth-form--glass select,
 .orders-screen .auth-form--glass input,
-.burgers-screen .auth-form--glass input {
+.burgers-screen .auth-form--glass input,
+.burgers-screen .auth-form--glass select {
     box-sizing: border-box;
     width: 100%;
     margin: 0;
@@ -291,7 +292,8 @@ a:not([class*="btn-pill"]) {
 .order-screen .auth-form--glass input:focus,
 .order-screen .auth-form--glass select:focus,
 .orders-screen .auth-form--glass input:focus,
-.burgers-screen .auth-form--glass input:focus {
+.burgers-screen .auth-form--glass input:focus,
+.burgers-screen .auth-form--glass select:focus {
     outline: none;
     border-color: rgba(212, 175, 55, 0.75);
     box-shadow:
@@ -312,9 +314,28 @@ a:not([class*="btn-pill"]) {
     padding-right: 36px;
 }
 
-.order-screen .auth-form--glass select option {
+.order-screen .auth-form--glass select option,
+.burgers-screen .auth-form--glass select option {
     color: #1a1408;
     background: #f2ebe0;
+}
+
+.burgers-screen .auth-form--glass select {
+    appearance: none;
+    cursor: pointer;
+    background-image:
+            linear-gradient(180deg, rgba(42, 40, 36, 0.95), rgba(20, 18, 16, 0.98)),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23d4af37' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat, no-repeat;
+    background-position: 0 0, right 14px center;
+    background-size: auto, 12px;
+    padding-right: 36px;
+}
+
+.burgers-screen .burger-picker-form {
+    margin-bottom: 18px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
 }
 
 .auth-screen .field-error,
@@ -435,36 +456,55 @@ label {
 .burger-card {
     background: rgba(8, 12, 8, 0.55);
     border: 1px solid rgba(0, 200, 83, 0.6);
-    border-radius: 14px;
-    padding: 20px;
-    margin: 20px;
-    max-width: 320px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
     text-align: left;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
 }
 
 .burger-card img {
     width: 100%;
-    height: 200px;
+    height: 100px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.burger-card h2 {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    color: #00e676;
+    flex-shrink: 0;
 }
 
 .burger-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 0;
+    justify-items: stretch;
+    align-items: stretch;
 }
 
 /* Burgers page */
+html.burgers-screen-html,
 body.burgers-screen {
     margin: 0;
-    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
     background: #2a1f16;
 }
 
@@ -494,12 +534,21 @@ body.burgers-screen {
 .burgers-page {
     position: relative;
     z-index: 1;
-    max-width: 1200px;
+    width: 100%;
+    max-width: none;
     margin: 0 auto;
-    padding-top: 8px;
 }
 
-.burgers-screen .container {
+.burgers-screen .burgers-page.container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: none;
+    min-height: calc(100dvh - 54px);
+    padding: 24px 14px clamp(72px, 14vh, 110px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
     text-align: center;
 }
 
@@ -509,23 +558,143 @@ body.burgers-screen {
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 14px;
-    margin-bottom: 28px;
+    gap: 12px;
+    margin: 0 0 0;
     width: 100%;
+    flex-shrink: 0;
 }
 
 .burgers-screen .burgers-header h1 {
     margin: 0;
     width: 100%;
     color: #ffd700;
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
-    letter-spacing: 0.5px;
+    font-size: clamp(1.25rem, 2.6vh, 1.65rem);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+    letter-spacing: 0.04em;
 }
 
 .burgers-header-actions {
     display: flex;
     justify-content: center;
+}
+
+.burgers-screen .burgers-header-actions .btn-pill {
+    height: 30px;
+    min-width: 0;
+    padding: 0 14px;
+    font-size: 0.65rem;
+}
+
+/* 2×2 — отделени от header, скрол при нужда */
+.burgers-screen .burger-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    width: min(620px, 94vw);
+    max-width: 620px;
+    margin: 40px auto 0;
+    padding: 0;
+    align-items: stretch;
+}
+
+.burgers-screen .burger-card {
+    margin: 0;
+    min-width: 0;
+    height: 100%;
+    min-height: 300px;
+    padding: 16px;
+    gap: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border-radius: 12px;
+}
+
+.burgers-screen .burger-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    max-height: 165px;
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.burgers-screen .burger-card h2 {
+    font-size: clamp(0.9rem, 1.05vw, 1.05rem);
+    line-height: 1.25;
+    text-align: left;
+    flex-shrink: 0;
+}
+
+.burgers-screen .burger-card > p:nth-of-type(1) {
+    margin: 0;
+    line-height: 1.35;
+    font-size: clamp(0.74rem, 0.85vw, 0.82rem);
+    color: #e8ffe8;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.burgers-screen .burger-card > p:nth-of-type(2) {
+    margin: 0;
+    line-height: 1.3;
+    font-size: clamp(0.7rem, 0.8vw, 0.78rem);
+    color: #d8e8d8;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.burgers-screen .burger-card > p:nth-of-type(2) strong {
+    color: #e8ffe8;
+}
+
+.burgers-screen .burger-card > p:nth-of-type(3) {
+    margin: 0;
+    font-size: clamp(0.8rem, 0.9vw, 0.88rem);
+    flex-shrink: 0;
+}
+
+.burgers-screen .burger-card > p:nth-of-type(3) strong {
+    color: #e8ffe8;
+    font-weight: 600;
+}
+
+.burgers-screen .burger-card > p:nth-of-type(3) span {
+    color: #ffd700;
+    font-weight: 700;
+}
+
+.burgers-screen .burger-card .btn-pill {
+    min-width: 0;
+    width: 100%;
+    height: 34px;
+    padding: 0 12px;
+    font-size: clamp(0.66rem, 0.78vw, 0.74rem);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.burgers-screen .burger-admin-actions {
+    margin-top: 8px;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.burgers-screen .burger-admin-actions .btn-pill {
+    height: 32px;
+    font-size: clamp(0.6rem, 0.72vw, 0.68rem);
 }
 
 .burger-empty {
@@ -541,7 +710,7 @@ body.burgers-screen {
 
 .burger-card p {
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.35;
 }
 
 .burger-admin-actions {

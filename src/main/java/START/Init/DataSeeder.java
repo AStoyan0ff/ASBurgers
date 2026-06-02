@@ -55,6 +55,8 @@ public class DataSeeder implements CommandLineRunner {
 
     private void burgerSeed() {
 
+        removeBurgerIfExists("Bacon Burger");
+
         seedBurgerIfMissing(
                 "Classic Burger",
                 "Classic beef burger with fresh veggies",
@@ -64,20 +66,33 @@ public class DataSeeder implements CommandLineRunner {
         );
 
         seedBurgerIfMissing(
-                "Bacon Burger",
-                "Smoky burger with crispy bacon strips",
-                "Beef patty, bacon, cheddar, BBQ sauce",
-                BigDecimal.valueOf(15.99),
-                "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800"
-        );
-
-        seedBurgerIfMissing(
                 "Double Cheese Burger",
                 "Two patties loaded with melted cheese",
                 "Double beef, double cheddar, pickles, house sauce",
                 BigDecimal.valueOf(16.99),
                 "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=800"
         );
+
+        seedBurgerIfMissing(
+                "Crispy Chicken Burger",
+                "Golden crispy chicken fillet with creamy slaw",
+                "Crispy chicken, lettuce, tomato, mayo, brioche bun",
+                BigDecimal.valueOf(14.49),
+                "https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=800"
+        );
+    }
+
+    private void removeBurgerIfExists(String name) {
+        burgerRepository.findByName(name).ifPresent(burger -> {
+
+            try {
+                burgerRepository.delete(burger);
+
+            } catch (Exception ex) {
+                burger.setAvailable(false);
+                burgerRepository.save(burger);
+            }
+        });
     }
 
     private void seedBurgerIfMissing(String name,
