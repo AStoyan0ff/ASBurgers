@@ -1,12 +1,7 @@
 
 <h2 align="center">
   <strong>🍔ASBurgers King🍔</strong><br>
-  <p>Spring Boot · Thymeleaf · MySQL · Session-based auth</p>
-</h2>
-
-<h2 align="center">
-  <strong>Уеб приложение за поръчка на бургери</strong><br>
-  <p>Spring Boot · Thymeleaf · MySQL · Session-based auth</p>
+  <p>Уеб приложение за поръчка на бургери</p><br>
 </h2>
 
 ---
@@ -34,7 +29,7 @@
   </tr>
   <tr>
     <th>База данни</th>
-    <td>MySQL — <code>as_burgers</code></td>
+    <td>MySQL - <code>as_burgers</code></td>
   </tr>
 </table>
 
@@ -98,18 +93,18 @@
 <ul>
   <li><strong>Начална страница</strong> (<code>/</code>) — фоново изображение, Register / Login</li>
   <li><strong>Регистрация</strong> (<code>/auth/register</code>) — username, email, password, address</li>
-  <li><strong>Вход</strong> (<code>/auth/login</code>) — session с <code>userId</code> и <code>role</code></li>
+  <li><strong>Вход</strong> (<code>/auth/login</code>) - session с <code>userId</code> и <code>role</code></li>
 </ul>
 
 ### За влезли потребители (USER / ADMIN)
 
 <ul>
-  <li><strong>Меню бургери</strong> (<code>/burgers</code>) — карти с снимка, описание, цена, бутон <em>Order</em></li>
-  <li><strong>Нова поръчка</strong> (<code>/orders/create</code>) — избор на бургер, количество, адрес за доставка</li>
-  <li><strong>Моите поръчки</strong> (<code>/orders/my</code>) — показва поръчка в статус <code>CREATED</code> (чака плащане)</li>
-  <li><strong>Плащане</strong> (<code>POST /payments/{orderId}</code>) — holder, номер на карта, CVC (CVC <strong>не се записва</strong>)</li>
+  <li><strong>Меню бургери</strong> (<code>/burgers</code>) - карти с снимка, описание, цена, бутон <em>Order</em></li>
+  <li><strong>Нова поръчка</strong> (<code>/orders/create</code>) - избор на бургер, количество, адрес за доставка</li>
+  <li><strong>Моите поръчки</strong> (<code>/orders/my</code>) - показва поръчка в статус <code>CREATED</code> (чака плащане)</li>
+  <li><strong>Плащане</strong> (<code>POST /payments/{orderId}</code>) - holder, номер на карта, CVC (CVC <strong>не се записва</strong>)</li>
   <li><strong>Отказ на поръчка</strong> (<code>POST /orders/{id}/cancel</code>)</li>
-  <li><strong>История</strong> (<code>/orders/order-history</code>) — завършени / платени / отменени поръчки (компактен списък)</li>
+  <li><strong>История</strong> (<code>/orders/order-history</code>) - завършени / платени / отменени поръчки (компактен списък)</li>
   <li><strong>Изход</strong> (<code>/auth/logout</code>)</li>
 </ul>
 
@@ -117,7 +112,7 @@
 
 <ul>
   <li><strong>Създаване на бургер</strong> (<code>/burgers/create</code>)</li>
-  <li><strong>Редакция</strong> (<code>/burgers/{id}/edit</code>) — UI наличен</li>
+  <li><strong>Редакция</strong> (<code>/burgers/{id}/edit</code>) - UI наличен</li>
   <li><strong>Изтриване</strong> (<code>POST /burgers/{id}/delete</code>)</li>
 </ul>
 
@@ -143,7 +138,7 @@
   <tbody>
     <tr>
       <td>Админ</td>
-      <td><code>admin</code> / <code>admin123</code> · роля <code>ADMIN</code></td>
+      <td><code>admin</code> / <code>admin123</code> - роля <code>ADMIN</code></td>
     </tr>
     <tr>
       <td>Бургери</td>
@@ -218,7 +213,7 @@ ASBurgers/
   </tbody>
 </table>
 
-<p>Статични ресурси: <code>/css/**</code>, <code>/images/**</code> — достъпни без login (конфигурирано в <code>AuthInterceptor</code>).</p>
+<p>Статични ресурси: <code>/css/**</code>, <code>/images/**</code> - достъпни без login (конфигурирано в <code>AuthInterceptor</code>).</p>
 
 ---
 
@@ -234,11 +229,11 @@ ASBurgers/
   <tbody>
     <tr>
       <td><code>User</code></td>
-      <td>Роли: <code>USER</code>, <code>ADMIN</code> · BCrypt парола</td>
+      <td>Роли: <code>USER</code>, <code>ADMIN</code> - BCrypt парола</td>
     </tr>
     <tr>
       <td><code>Burger</code></td>
-      <td><code>is_available</code> · цена, снимка (URL), съставки</td>
+      <td><code>is_available</code> - цена, снимка (URL), съставки</td>
     </tr>
     <tr>
       <td><code>Order</code></td>
@@ -246,7 +241,7 @@ ASBurgers/
     </tr>
     <tr>
       <td><code>Payment</code></td>
-      <td>Свързано с поръчка · статус на плащане</td>
+      <td>Свързано с поръчка - статус на плащане</td>
     </tr>
   </tbody>
 </table>
@@ -256,8 +251,8 @@ ASBurgers/
 ## UI / дизайн
 
 <ul>
-  <li><strong>Бутони:</strong> <code>.btn-pill</code>, <code>.btn-pill--gold</code>, <code>.btn-pill--silver</code> — еднакви навсякъде</li>
-  <li><strong>Форми:</strong> метални панели (<code>.auth-card</code>, <code>.order-payment-card</code>) — злато/сребро рамки, inset полета</li>
+  <li><strong>Бутони:</strong> <code>.btn-pill</code>, <code>.btn-pill--gold</code>, <code>.btn-pill--silver</code> - еднакви навсякъде</li>
+  <li><strong>Форми:</strong> метални панели (<code>.auth-card</code>, <code>.order-payment-card</code>) - злато/сребро рамки, inset полета</li>
   <li><strong>Навигация:</strong> fragment <code>Fragments/navbar.html</code> — pill линкове, активна страница в злато</li>
   <li><strong>Фонове:</strong> отделни изображения per страница (home, burgers, auth, orders)</li>
 </ul>
@@ -276,24 +271,15 @@ ASBurgers/
 
 <h3>Конфигурация</h3>
 
-<p>Редактирайте <code>src/main/resources/application.properties</code>:</p>
-
 <pre><code>spring.datasource.url=jdbc:mysql://localhost:3306/as_burgers?createDatabaseIfNotExist=true
 spring.datasource.username=ВАШИЯ_USER
 spring.datasource.password=ВАШАТА_ПАРОЛА
 server.port=8080</code></pre>
 
-<blockquote>
-  <strong>Препоръка:</strong> Не комитирайте реални пароли в Git. Използвайте environment variables или <code>application-local.properties</code> (в <code>.gitignore</code>).
-</blockquote>
-
-<h3>Старт</h3>
+<h2>Старт</h2>
 
 <pre><code># Windows
 mvnw.cmd spring-boot:run
-
-# Linux / macOS
-https://github.com/AStoyan0ff/ASBurgers.git
 
 <p>clone repo: <a href="https://github.com/AStoyan0ff/ASBurgers.git</p>
 
@@ -305,48 +291,39 @@ https://github.com/AStoyan0ff/ASBurgers.git
 
 ---
 
-<h3>Висок приоритет</h3>
-
-<ul>
-  <li><strong>Spring Security (пълноценно)</strong> — замяна или допълване на <code>AuthInterceptor</code> с role-based URL rules, CSRF защита</li>
-  <li><strong>Тайни извън репото</strong> — <code>SPRING_DATASOURCE_*</code> env vars, профили <code>dev</code> / <code>prod</code></li>
-  <li><strong>Интеграционни тестове</strong> — MockMvc за auth, orders, admin flows</li>
-</ul>
-
-<h3>Функционалност</h3>
+<h2>Функционалност</h2>
 
 <ul>
   <li>Количка с множество артикули преди checkout</li>
   <li>Реален payment gateway (Stripe и др.) вместо симулирано плащане</li>
-  <li>Проследяване на доставка — автоматична смяна <code>DELIVERING</code> → <code>DELIVERED</code></li>
+  <li>Проследяване на доставка - автоматична смяна <code>DELIVERING</code> → <code>DELIVERED</code></li>
   <li>Email потвърждения при регистрация и поръчка</li>
   <li>Качване на снимки за бургери (не само URL)</li>
-  <li>Профил на потребител — редакция на адрес и парола</li>
+  <li>Профил на потребител - редакция на адрес и парола</li>
   <li>Търсене и филтри в менюто (цена, съставки)</li>
 </ul>
 
-<h3>UI / UX</h3>
+<h2>UI / UX</h2>
 
 <ul>
   <li>Responsive подобрения за мобилни устройства</li>
   <li>Единна дизайн система (CSS variables / optional component library)</li>
   <li>Метален стил и за картите в <code>/orders/order-history</code> (в момента са по-стар зелен акцент)</li>
-  <li>i18n — български/английски превключване</li>
   <li>Accessibility (ARIA, контраст, keyboard navigation)</li>
 </ul>
 
-<h3>Техническо качество</h3>
+<h2>Техническо качество</h2>
 
 <ul>
   <li>DTO ↔ Entity мапване с MapStruct</li>
   <li>Пагинация за история и админ списъци</li>
   <li>OpenAPI документация, ако се добави REST API</li>
   <li>Docker Compose (<code>app</code> + <code>mysql</code>) за еднокоманден старт</li>
-  <li>CI pipeline (GitHub Actions) — build + tests</li>
+  <li>CI pipeline (GitHub Actions) - build + tests</li>
   <li>Логиране и мониторинг (Actuator, structured logs)</li>
 </ul>
 
-<h3>Сигурност</h3>
+<h2>Сигурност</h2>
 
 <ul>
   <li>Rate limiting на login/register</li>
