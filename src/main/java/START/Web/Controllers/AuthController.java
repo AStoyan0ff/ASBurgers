@@ -1,5 +1,7 @@
 package START.Web.Controllers;
 
+import START.Exception.InvalidCredentialsException;
+import START.Exception.RegistrationConflictException;
 import START.Models.User;
 import START.Services.UserService;
 import START.Web.DTOs.LoginRequest;
@@ -51,7 +53,7 @@ public class AuthController {
         try {
             userService.register(registerRequest);
 
-        } catch (IllegalStateException ex) {
+        } catch (RegistrationConflictException ex) {
             ModelAndView mv = new ModelAndView("register");
 
             mv.addObject("registerRequest", registerRequest);
@@ -94,7 +96,7 @@ public class AuthController {
             session.setAttribute("username", user.getUsername());
             session.setAttribute("role", user.getRole());
 
-        } catch (IllegalStateException ex) {
+        } catch (InvalidCredentialsException ex) {
             ModelAndView mv = new ModelAndView("login");
 
             mv.addObject("loginRequest", loginRequest);

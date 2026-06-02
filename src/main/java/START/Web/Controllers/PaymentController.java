@@ -1,5 +1,6 @@
 package START.Web.Controllers;
 
+import START.Exception.ASBurgersException;
 import START.Services.OrderService;
 import START.Services.PaymentService;
 import START.Web.DTOs.PaymentRequest;
@@ -48,7 +49,7 @@ public class PaymentController {
         try {
             paymentService.payOrder(orderId, userId, paymentRequest);
 
-        } catch (IllegalArgumentException | IllegalStateException ex) {
+        } catch (ASBurgersException ex) {
             return buildMyOrdersView(userId, orderId, ex.getMessage(), paymentRequest);
         }
 

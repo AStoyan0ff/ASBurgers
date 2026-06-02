@@ -1,5 +1,9 @@
 package START.Services;
 
+import START.Exception.EmailAlreadyExistsException;
+import START.Exception.InvalidCredentialsException;
+import START.Exception.UserNotFoundException;
+import START.Exception.UsernameAlreadyExistsException;
 import START.Models.User;
 import START.Repositories.UserRepository;
 import START.Web.DTOs.LoginRequest;
@@ -23,11 +27,11 @@ public class UserService {
     public void register(RegisterRequest request) {
 
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new IllegalStateException("Email already exists");
+            throw new EmailAlreadyExistsException();
         }
 
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new IllegalStateException("Username already exists");
+            throw new UsernameAlreadyExistsException();
         }
 
         User user = User.builder()
@@ -43,18 +47,17 @@ public class UserService {
 
     public User login(LoginRequest request) {
 
-        User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() ->
-                new IllegalStateException("Invalid username or password."));
+        User user = userRepository.findByUsername(request.getUsername())
+                .orElseThrow(InvalidCredentialsException::new);
 
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            throw new IllegalStateException("Invalid username or password.");
+            throw new InvalidCredentialsException();
         }
 
         return user;
     }
 
     public User getById(UUID id) {
-        return userRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("User not found."));
+        return userRepository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 }

@@ -1,5 +1,6 @@
 package START.Web.Controllers;
 
+import START.Exception.ASBurgersException;
 import START.Models.User;
 import START.Services.BurgerService;
 import START.Services.OrderService;
@@ -76,7 +77,7 @@ public class OrderController {
         try {
             orderService.createOrder(userId, createOrderRequest);
 
-        } catch (IllegalArgumentException | IllegalStateException ex) {
+        } catch (ASBurgersException ex) {
             return buildOrderCreateView(createOrderRequest, ex.getMessage());
         }
 

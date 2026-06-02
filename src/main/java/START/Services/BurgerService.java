@@ -1,5 +1,6 @@
 package START.Services;
 
+import START.Exception.BurgerNotFoundException;
 import START.Models.Burger;
 import START.Repositories.BurgerRepository;
 import START.Web.DTOs.BurgerRequest;
@@ -26,8 +27,7 @@ public class BurgerService {
     }
 
     public Burger getById(UUID id) {
-        return burgerRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Burger not found."));
+        return burgerRepository.findById(id).orElseThrow(BurgerNotFoundException::new);
     }
 
     public void createBurger(BurgerRequest request) {

@@ -1,5 +1,9 @@
 package START.Services;
 
+import START.Exception.BurgerNotAvailableException;
+import START.Exception.OrderAccessDeniedException;
+import START.Exception.OrderNotFoundException;
+import START.Exception.PaidOrderCannotBeCancelledException;
 import START.Enums.OrderStatus;
 import START.Models.Burger;
 import START.Models.Order;
@@ -51,7 +55,7 @@ public class OrderService {
             Burger burger = burgerService.getById(itemRequest.getBurgerId());
 
             if (!burger.isAvailable()) {
-                throw new IllegalArgumentException("Burger is not available.");
+                throw new BurgerNotAvailableException();
             }
 
             BigDecimal itemTotal = burger.getPrice()
@@ -113,19 +117,18 @@ public class OrderService {
     }
 
     public Order getById(UUID id) {
-        return orderRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Order not found."));
+        return orderRepository.findById(id).orElseThrow(OrderNotFoundException::new);
     }
 
     public void cancelOrder(UUID orderId, UUID userId) {
         Order order = getById(orderId);
 
         if (!order.getUser().getId().equals(userId)) {
-            throw new IllegalArgumentException("You cannot cancel this order.");
+            throw OrderAccessDeniedException.cannotCancel();
         }
 
         if (order.getStatus() == OrderStatus.PAID) {
-            throw new IllegalArgumentException("Paid order cannot be cancelled.");
+            throw new PaidOrderCannotBeCancelledException();
         }
 
         order.setStatus(OrderStatus.CANCELLED);

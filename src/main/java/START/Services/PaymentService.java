@@ -1,5 +1,7 @@
 package START.Services;
 
+import START.Exception.OrderAccessDeniedException;
+import START.Exception.OrderNotPayableException;
 import START.Enums.OrderStatus;
 import START.Enums.PaymentStatus;
 import START.Models.Order;
@@ -34,11 +36,11 @@ public class PaymentService {
         Order order = orderService.getById(orderId);
 
         if (!order.getUser().getId().equals(userId)) {
-            throw new IllegalArgumentException("You cannot pay this order.");
+            throw OrderAccessDeniedException.cannotPay();
         }
 
         if (order.getStatus() != OrderStatus.CREATED) {
-            throw new IllegalArgumentException("Only created orders can be paid.");
+            throw new OrderNotPayableException();
         }
 
         Payment payment = Payment.builder()
