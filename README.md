@@ -200,16 +200,16 @@ ASBurgers/
     <tr><td>GET</td><td><code>/</code></td><td>Начало</td><td>Публичен</td></tr>
     <tr><td>GET/POST</td><td><code>/auth/register</code></td><td>Регистрация</td><td>Публичен</td></tr>
     <tr><td>GET/POST</td><td><code>/auth/login</code></td><td>Вход</td><td>Публичен</td></tr>
-    <tr><td>GET</td><td><code>/auth/logout</code></td><td>Изход</td><td>Влезъл</td></tr>
-    <tr><td>GET</td><td><code>/burgers</code></td><td>Меню</td><td>Влезъл</td></tr>
+    <tr><td>GET</td><td><code>/auth/logout</code></td><td>Изход</td><td>Влязъл</td></tr>
+    <tr><td>GET</td><td><code>/burgers</code></td><td>Меню</td><td>Влязъл</td></tr>
     <tr><td>GET/POST</td><td><code>/burgers/create</code></td><td>Нов бургер</td><td>ADMIN</td></tr>
     <tr><td>GET</td><td><code>/burgers/{id}/edit</code></td><td>Форма за редакция</td><td>ADMIN</td></tr>
     <tr><td>POST</td><td><code>/burgers/{id}/delete</code></td><td>Изтриване</td><td>ADMIN</td></tr>
-    <tr><td>GET/POST</td><td><code>/orders/create</code></td><td>Нова поръчка</td><td>Влезъл</td></tr>
-    <tr><td>GET</td><td><code>/orders/my</code></td><td>Плащане / активна поръчка</td><td>Влезъл</td></tr>
-    <tr><td>GET</td><td><code>/orders/order-history</code></td><td>История</td><td>Влезъл</td></tr>
-    <tr><td>POST</td><td><code>/orders/{id}/cancel</code></td><td>Отказ</td><td>Влезъл</td></tr>
-    <tr><td>POST</td><td><code>/payments/{orderId}</code></td><td>Плащане</td><td>Влезъл</td></tr>
+    <tr><td>GET/POST</td><td><code>/orders/create</code></td><td>Нова поръчка</td><td>Влязъл</td></tr>
+    <tr><td>GET</td><td><code>/orders/my</code></td><td>Плащане / активна поръчка</td><td>Влязъл</td></tr>
+    <tr><td>GET</td><td><code>/orders/order-history</code></td><td>История</td><td>Влязъл</td></tr>
+    <tr><td>POST</td><td><code>/orders/{id}/cancel</code></td><td>Отказ</td><td>Влязъл</td></tr>
+    <tr><td>POST</td><td><code>/payments/{orderId}</code></td><td>Плащане</td><td>Влязъл</td></tr>
   </tbody>
 </table>
 
