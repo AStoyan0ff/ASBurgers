@@ -36,7 +36,8 @@ public class PaymentController {
 
     @PostMapping("/{orderId}")
     public ModelAndView payOrder(@PathVariable UUID orderId,
-                                 @Valid @ModelAttribute PaymentRequest paymentRequest,
+                                 @Valid @ModelAttribute
+                                 PaymentRequest paymentRequest,
                                  BindingResult bindingResult,
                                  HttpSession session) {
 
@@ -59,7 +60,8 @@ public class PaymentController {
     private ModelAndView buildMyOrdersView(UUID userId,
                                            UUID failedOrderId,
                                            String paymentError,
-                                           PaymentRequest paymentRequest) {
+                                           PaymentRequest paymentRequest
+    ) {
 
         ModelAndView mv = new ModelAndView("my-orders");
 

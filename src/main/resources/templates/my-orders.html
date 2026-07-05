@@ -26,7 +26,7 @@
         </div>
 
         <div class="auth-card order-payment-card" th:if="${order != null}">
-            <h3>Pay with card</h3>
+            <h3>Pay with a card</h3>
 
             <p class="auth-error"
                th:if="${paymentError != null}"
@@ -78,7 +78,8 @@
                     <input type="checkbox"
                            id="backToBurgers"
                            th:onchange="|if (this.checked) window.location.href='@{/burgers}'|">
-                    <span>Back to burgers</span>
+                    <!-- имплементация на метода -->
+                    <span>Pay on Delivery</span> 10% discount
                 </label>
             </form>
 

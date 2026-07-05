@@ -30,7 +30,7 @@
                 <div class="order-card-compact">
                     <p class="order-card-line">
                         <strong>Total:</strong>
-                        <span th:text="|${order.totalPrice} €|"></span>
+                        <span th:text="${order.totalPrice + ' €'}"></span>
                     </p>
                     <p class="order-card-line">
                         <strong>Status:</strong>
@@ -52,6 +52,7 @@
                     </p>
                 </div>
             </div>
+
         </div>
 
         <div class="order-btn-row order-btn-row--nav order-btn-row--sticky" th:if="${!orders.isEmpty()}">

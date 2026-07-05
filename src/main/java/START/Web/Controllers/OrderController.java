@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -119,7 +120,7 @@ public class OrderController {
     private ModelAndView buildOrderCreateView(CreateOrderRequest createOrderRequest, String orderError) {
 
         if (createOrderRequest.getItems() == null || createOrderRequest.getItems().isEmpty()) {
-            createOrderRequest.setItems(new ArrayList<>(java.util.List.of(new OrderItemRequest())));
+            createOrderRequest.setItems(new ArrayList<>(List.of(new OrderItemRequest())));
         }
 
         ModelAndView mv = new ModelAndView("order-create");

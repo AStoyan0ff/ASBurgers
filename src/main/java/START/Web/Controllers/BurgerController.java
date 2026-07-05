@@ -30,6 +30,7 @@ public class BurgerController {
     @GetMapping()
     public ModelAndView getAllBurgers() {
         ModelAndView mv = new ModelAndView();
+
         mv.setViewName("burgers");
         mv.addObject("burgers", burgerService.getAllAvailableBurgers());
         mv.addObject("currentPage", "burgers");
@@ -39,6 +40,7 @@ public class BurgerController {
     @GetMapping("/create")
     public ModelAndView createBurgerPage() {
         ModelAndView mv = new ModelAndView();
+
         mv.addObject("burgerRequest", new BurgerRequest());
         mv.addObject("currentPage", "burgers");
         mv.setViewName("burger-create");
@@ -52,6 +54,7 @@ public class BurgerController {
 
         if (bindingResult.hasErrors()) {
             ModelAndView mv = new ModelAndView("burger-create");
+
             mv.addObject("burgerRequest", burgerRequest);
             mv.addObject("currentPage", "burgers");
             return mv;
@@ -76,15 +79,15 @@ public class BurgerController {
         return buildEditView(burgerId, burgerRequest, allBurgers, null);
     }
 
-    /** Старият линк /burgers/{id}/edit пренасочва към новата страница. */
     @GetMapping("/{id}/edit")
-    public ModelAndView legacyEditRedirect(@PathVariable("id") UUID id) {
+    public ModelAndView legacyEditRedirect(@PathVariable UUID id) {
         return new ModelAndView("redirect:/burgers/edit?burgerId=" + id);
     }
 
     @PostMapping("/edit")
     public ModelAndView editBurger(@RequestParam UUID burgerId,
-                                   @Valid @ModelAttribute("burgerRequest") BurgerRequest burgerRequest,
+                                   @Valid @ModelAttribute("burgerRequest")
+                                   BurgerRequest burgerRequest,
                                    BindingResult bindingResult) {
 
         List<BurgerResponse> allBurgers = burgerService.getAllBurgersForAdmin();
@@ -99,6 +102,7 @@ public class BurgerController {
 
     @PostMapping("/{id}/delete")
     public ModelAndView deleteBurger(@PathVariable UUID id) {
+
         burgerService.delete(id);
         return new ModelAndView("redirect:/burgers");
     }
@@ -109,6 +113,7 @@ public class BurgerController {
                                        String editError) {
 
         ModelAndView mv = new ModelAndView("burger-edit");
+
         mv.addObject("burgerId", burgerId);
         mv.addObject("burgerRequest", burgerRequest);
         mv.addObject("allBurgers", allBurgers);
