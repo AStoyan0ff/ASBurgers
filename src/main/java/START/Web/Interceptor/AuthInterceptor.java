@@ -16,11 +16,11 @@ public class AuthInterceptor implements HandlerInterceptor {
                              Object handler) throws Exception {
 
         HttpSession session = request.getSession(false);
-        String uri = request.getRequestURI();
+        String url = request.getRequestURI();
 
         boolean isLoggedIn = session != null && session.getAttribute("userId") != null;
 
-        if (isPublicPage(uri)) {
+        if (isPublicPage(url)) {
             return true;
         }
 
@@ -29,7 +29,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        if (isAdminPage(uri)) {
+        if (isAdminPage(url)) {
             UserRole role = (UserRole) session.getAttribute("role");
 
             if (role != UserRole.ADMIN) {
